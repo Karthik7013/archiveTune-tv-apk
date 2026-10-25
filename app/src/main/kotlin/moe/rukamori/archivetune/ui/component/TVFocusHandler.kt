@@ -7,6 +7,9 @@
 
 package moe.rukamori.archivetune.ui.component
 
+import android.view.KeyEvent.KEYCODE_DPAD_CENTER
+import android.view.KeyEvent.KEYCODE_ENTER
+import android.view.KeyEvent.KEYCODE_NUMPAD_ENTER
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateFloatAsState
@@ -49,6 +52,10 @@ import androidx.compose.ui.unit.dp
 import moe.rukamori.archivetune.R
 import moe.rukamori.archivetune.ui.screens.Screens
 
+val DPAD_CENTER_KEY = Key(KEYCODE_DPAD_CENTER.toLong())
+val ENTER_KEY = Key(KEYCODE_ENTER.toLong())
+val NUMPAD_ENTER_KEY = Key(KEYCODE_NUMPAD_ENTER.toLong())
+
 /**
  * A reusable D-pad focus handler for Android TV.
  *
@@ -90,7 +97,7 @@ fun TVFocusHandler(
                     onDpadRight()
                     true
                 }
-                Key.DPadCenter, Key.Enter -> {
+                DPAD_CENTER_KEY, ENTER_KEY, NUMPAD_ENTER_KEY -> {
                     onDpadCenter()
                     true
                 }
@@ -151,7 +158,7 @@ fun TVFocusableItem(
             .onKeyEvent { keyEvent ->
                 if (keyEvent.type != KeyEventType.KeyDown) return@onKeyEvent false
                 when (keyEvent.key) {
-                    Key.DPadCenter, Key.Enter -> {
+                    DPAD_CENTER_KEY, ENTER_KEY, NUMPAD_ENTER_KEY -> {
                         onClick()
                         true
                     }
@@ -159,8 +166,6 @@ fun TVFocusableItem(
                 }
             }
             .clickable(
-                interactionSource = interactionSource,
-                indication = null,
                 onClick = onClick,
             ),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -224,7 +229,7 @@ fun TVNavigationRailItemEnhanced(
             .onKeyEvent { keyEvent ->
                 if (keyEvent.type != KeyEventType.KeyDown) return@onKeyEvent false
                 when (keyEvent.key) {
-                    Key.DPadCenter, Key.Enter -> {
+                    DPAD_CENTER_KEY, ENTER_KEY, NUMPAD_ENTER_KEY -> {
                         onClick()
                         true
                     }
@@ -232,8 +237,6 @@ fun TVNavigationRailItemEnhanced(
                 }
             }
             .clickable(
-                interactionSource = interactionSource,
-                indication = null,
                 role = Role.Tab,
                 onClick = onClick,
             )
@@ -286,7 +289,7 @@ fun Modifier.tvCombinedClickable(
         if (keyEvent.type != KeyEventType.KeyDown) return@onKeyEvent false
         if (!enabled) return@onKeyEvent false
         when (keyEvent.key) {
-            Key.DPadCenter, Key.Enter -> {
+            DPAD_CENTER_KEY, ENTER_KEY, NUMPAD_ENTER_KEY -> {
                 onClick()
                 true
             }
@@ -338,7 +341,7 @@ fun Modifier.tvDpadClickable(onClick: () -> Unit): Modifier = this
     .onKeyEvent { keyEvent ->
         if (keyEvent.type != KeyEventType.KeyDown) return@onKeyEvent false
         when (keyEvent.key) {
-            Key.DPadCenter, Key.Enter -> {
+            DPAD_CENTER_KEY, ENTER_KEY, NUMPAD_ENTER_KEY -> {
                 onClick()
                 true
             }

@@ -79,9 +79,14 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.hapticfeedback.HapticFeedback
+import android.view.KeyEvent.KEYCODE_DPAD_CENTER
+import android.view.KeyEvent.KEYCODE_ENTER
+import android.view.KeyEvent.KEYCODE_NUMPAD_ENTER
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.input.key.Key
 import androidx.compose.ui.input.key.KeyEventType
+import androidx.compose.ui.input.key.key
+import androidx.compose.ui.input.key.onKeyEvent
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
@@ -179,7 +184,7 @@ fun HomeCategoryChips(
                     .onKeyEvent { keyEvent ->
                         if (keyEvent.type != KeyEventType.KeyDown) return@onKeyEvent false
                         when (keyEvent.key) {
-                            Key.DPadCenter, Key.Enter -> {
+                            Key(KEYCODE_DPAD_CENTER.toLong()), Key(KEYCODE_ENTER.toLong()), Key(KEYCODE_NUMPAD_ENTER.toLong()) -> {
                                 onChipSelected(chip)
                                 true
                             }

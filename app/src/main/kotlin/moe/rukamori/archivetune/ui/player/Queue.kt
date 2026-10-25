@@ -1121,34 +1121,50 @@ fun Queue(
                                                                 val joined =
                                                                     togetherSessionState as? moe.rukamori.archivetune.together.TogetherSessionState.Joined
                                                                 val isGuest = joined?.role is moe.rukamori.archivetune.together.TogetherRole.Guest
-                                                                if (isGuest) {
-                                                                    if (joined?.roomState?.settings?.allowGuestsToControlPlayback != true) {
-                                                                        Toast
-                                                                            .makeText(
-                                                                                context,
-                                                                                R.string.not_allowed,
-                                                                                Toast.LENGTH_SHORT,
-                                                                            ).show()
-                                                                        return@combinedClickable
-                                                                    }
-                                                                    val trackId =
-                                                                        window.mediaItem.metadata?.id?.trim().orEmpty().ifBlank {
-                                                                            window.mediaItem.mediaId.trim()
-                                                                        }
-                                                                    if (trackId.isBlank()) return@combinedClickable
+                                                            if (isGuest) {
+                                                                if (
+                                                                    joined?.roomState?.settings
+                                                                        ?.allowGuestsToControlPlayback != true
+                                                                ) {
                                                                     Toast
                                                                         .makeText(
                                                                             context,
-                                                                            R.string.together_requesting_song_change,
+                                                                            R.string.not_allowed,
                                                                             Toast.LENGTH_SHORT,
                                                                         ).show()
-                                                                    playerConnection.service.requestTogetherControl(
-                                                                        moe.rukamori.archivetune.together.ControlAction.SeekToTrack(
-                                                                            trackId = trackId,
-                                                                            positionMs = 0L,
-                                                                        ),
-                                                                    )
                                                                 } else {
+                                                                    val trackId =
+                                                                        window.mediaItem.metadata
+                                                                            ?.id?.trim()
+                                                                            .orEmpty()
+                                                                            .ifBlank {
+                                                                                window.mediaItem.mediaId
+                                                                                    .trim()
+                                                                            }
+                                                                    if (trackId.isNotBlank()) {
+                                                                        Toast
+                                                                            .makeText(
+                                                                                context,
+                                                                                R.string
+                                                                                    .together_requesting_song_change,
+                                                                                Toast.LENGTH_SHORT,
+                                                                            ).show()
+                                                                        playerConnection
+                                                                            .service
+                                                                            .requestTogetherControl(
+                                                                                moe.rukamori
+                                                                                    .archivetune
+                                                                                    .together
+                                                                                    .ControlAction
+                                                                                    .SeekToTrack(
+                                                                                        trackId =
+                                                                                            trackId,
+                                                                                        positionMs = 0L,
+                                                                                    ),
+                                                                            )
+                                                                    }
+                                                                }
+                                                            } else {
                                                                     playerConnection.player.seekToDefaultPosition(
                                                                         window.firstPeriodIndex,
                                                                     )

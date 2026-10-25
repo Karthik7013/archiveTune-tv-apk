@@ -93,6 +93,7 @@ import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import android.view.KeyEvent.KEYCODE_DPAD_CENTER
 import androidx.compose.ui.graphics.TransformOrigin
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.graphics.graphicsLayer
@@ -1018,7 +1019,7 @@ fun BottomSheetPlayer(
                     if (keyEvent.type != KeyEventType.KeyDown || state.isCollapsed) return@onKeyEvent false
 
                     when (keyEvent.key) {
-                        Key.DPadCenter, Key.Enter -> {
+                        Key(KEYCODE_DPAD_CENTER.toLong()), Key.Enter -> {
                             playerConnection.player.togglePlayPause()
                             true
                         }

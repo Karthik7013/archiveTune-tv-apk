@@ -859,8 +859,6 @@ fun PlaylistGridCard(
                 }.clip(RoundedCornerShape(32.dp))
                 .background(cardBgColor)
                 .tvCombinedClickable(
-                    interactionSource = interactionSource,
-                    indication = null,
                     onClick = onClick,
                     onLongClick = onLongClick,
                 ).padding(12.dp),
