@@ -151,7 +151,7 @@ fun TVFocusableItem(
                 onClick = onClick,
             ),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.CenterVertically,
+        verticalArrangement = Arrangement.Center,
     ) {
         content()
     }
@@ -209,7 +209,7 @@ fun TVNavigationRailItemEnhanced(
         verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
         androidx.compose.foundation.layout.Box(
-            modifier = androidx.compose.foundation.layout.Modifier.size(32.dp),
+            modifier = androidx.compose.ui.Modifier.size(32.dp),
             contentAlignment = Alignment.Center,
         ) {
             Icon(
