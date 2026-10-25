@@ -7,21 +7,39 @@
 
 package moe.rukamori.archivetune.ui.component
 
+import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.spring
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.focusable
-import androidx.compose.material3.MaterialTheme
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.scale
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusProperties
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.input.key.Key
 import androidx.compose.ui.input.key.KeyEventType
+import androidx.compose.ui.input.key.key
 import androidx.compose.ui.input.key.onKeyEvent
+import androidx.compose.ui.input.key.type
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
@@ -99,40 +117,37 @@ fun TVFocusableItem(
     onClick: () -> Unit = {},
     content: @Composable () -> Unit,
 ) {
-    val interactionSource = remember { androidx.compose.foundation.interaction.MutableInteractionSource() }
+    val interactionSource = remember { MutableInteractionSource() }
 
-    val containerColor by androidx.compose.animation.animateColorAsState(
+    val containerColor by animateColorAsState(
         targetValue = when {
             focused -> MaterialTheme.colorScheme.secondaryContainer
             selected -> MaterialTheme.colorScheme.surfaceContainerHighest
             else -> MaterialTheme.colorScheme.surfaceContainerLow
         },
-        animationSpec = androidx.compose.animation.core.spring(
-            dampingRatio = androidx.compose.animation.core.Spring.DampingRatioMediumBouncy,
-            stiffness = androidx.compose.animation.core.Spring.StiffnessMediumLow,
+        animationSpec = spring(
+            dampingRatio = Spring.DampingRatioMediumBouncy,
+            stiffness = Spring.StiffnessMediumLow,
         ),
         label = "TVFocusableItemContainerColor",
     )
 
-    val contentColor by androidx.compose.animation.animateColorAsState(
+    val contentColor by animateColorAsState(
         targetValue = when {
             focused -> MaterialTheme.colorScheme.onSecondaryContainer
             selected -> MaterialTheme.colorScheme.onSurface
             else -> MaterialTheme.colorScheme.onSurfaceVariant
         },
-        animationSpec = androidx.compose.animation.core.spring(
-            dampingRatio = androidx.compose.animation.core.Spring.DampingRatioMediumBouncy,
-            stiffness = androidx.compose.animation.core.Spring.StiffnessMediumLow,
+        animationSpec = spring(
+            dampingRatio = Spring.DampingRatioMediumBouncy,
+            stiffness = Spring.StiffnessMediumLow,
         ),
         label = "TVFocusableItemContentColor",
     )
 
-    androidx.compose.foundation.layout.Column(
+    Column(
         modifier = modifier
             .focusable()
-            .focusProperties {
-                direction = androidx.compose.ui.focus.FocusDirection.All
-            }
             .onKeyEvent { keyEvent ->
                 if (keyEvent.type != KeyEventType.KeyDown) return@onKeyEvent false
                 when (keyEvent.key) {
@@ -149,7 +164,7 @@ fun TVFocusableItem(
                 onClick = onClick,
             ),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalAlignment = Alignment.CenterVertically,
+        verticalArrangement = Arrangement.CenterVertically,
     ) {
         content()
     }
@@ -166,39 +181,39 @@ fun TVNavigationRailItemEnhanced(
     modifier: Modifier = Modifier,
     onClick: () -> Unit,
 ) {
-    val interactionSource = remember { androidx.compose.foundation.interaction.MutableInteractionSource() }
+    val interactionSource = remember { MutableInteractionSource() }
 
-    val scale by androidx.compose.animation.animateFloatAsState(
+    val scale by animateFloatAsState(
         targetValue = if (focused || selected) 1.06f else 1f,
-        animationSpec = androidx.compose.animation.core.spring(
-            dampingRatio = androidx.compose.animation.core.Spring.DampingRatioMediumBouncy,
-            stiffness = androidx.compose.animation.core.Spring.StiffnessMediumLow,
+        animationSpec = spring(
+            dampingRatio = Spring.DampingRatioMediumBouncy,
+            stiffness = Spring.StiffnessMediumLow,
         ),
         label = "TVNavigationRailItemEnhancedScale",
     )
 
-    val containerColor by androidx.compose.animation.animateColorAsState(
+    val containerColor by animateColorAsState(
         targetValue = when {
             focused -> MaterialTheme.colorScheme.secondaryContainer
             selected -> MaterialTheme.colorScheme.surfaceContainerHighest
             else -> MaterialTheme.colorScheme.surfaceContainerLow
         },
-        animationSpec = androidx.compose.animation.core.spring(
-            dampingRatio = androidx.compose.animation.core.Spring.DampingRatioMediumBouncy,
-            stiffness = androidx.compose.animation.core.Spring.StiffnessMediumLow,
+        animationSpec = spring(
+            dampingRatio = Spring.DampingRatioMediumBouncy,
+            stiffness = Spring.StiffnessMediumLow,
         ),
         label = "TVNavigationRailItemEnhancedColor",
     )
 
-    val contentColor by androidx.compose.animation.animateColorAsState(
+    val contentColor by animateColorAsState(
         targetValue = when {
             focused -> MaterialTheme.colorScheme.onSecondaryContainer
             selected -> MaterialTheme.colorScheme.onSurface
             else -> MaterialTheme.colorScheme.onSurfaceVariant
         },
-        animationSpec = androidx.compose.animation.core.spring(
-            dampingRatio = androidx.compose.animation.core.Spring.DampingRatioMediumBouncy,
-            stiffness = androidx.compose.animation.core.Spring.StiffnessMediumLow,
+        animationSpec = spring(
+            dampingRatio = Spring.DampingRatioMediumBouncy,
+            stiffness = Spring.StiffnessMediumLow,
         ),
         label = "TVNavigationRailItemEnhancedContentColor",
     )
@@ -206,9 +221,6 @@ fun TVNavigationRailItemEnhanced(
     Column(
         modifier = modifier
             .focusable()
-            .focusProperties {
-                direction = androidx.compose.ui.focus.FocusDirection.All
-            }
             .onKeyEvent { keyEvent ->
                 if (keyEvent.type != KeyEventType.KeyDown) return@onKeyEvent false
                 when (keyEvent.key) {
@@ -230,7 +242,7 @@ fun TVNavigationRailItemEnhanced(
             .background(containerColor)
             .scale(scale),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = androidx.compose.foundation.layout.Arrangement.spacedBy(8.dp),
+        verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
         androidx.compose.foundation.layout.Box(
             modifier = androidx.compose.foundation.layout.Modifier.size(32.dp),
