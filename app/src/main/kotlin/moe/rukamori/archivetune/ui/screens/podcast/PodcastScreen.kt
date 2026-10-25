@@ -463,6 +463,7 @@ private fun PodcastEpisodeRow(
             modifier
                 .fillMaxWidth()
                 .heightIn(min = 112.dp)
+                .focusable()
                 .clickable(onClick = onClick)
                 .padding(horizontal = 8.dp),
     )

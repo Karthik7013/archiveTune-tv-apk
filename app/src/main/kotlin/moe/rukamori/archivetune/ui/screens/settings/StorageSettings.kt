@@ -745,6 +745,7 @@ private fun StorageLocationOptionRow(
         modifier =
             Modifier
                 .fillMaxWidth()
+                .focusable()
                 .clickable(onClick = onClick),
     ) {
         Row(

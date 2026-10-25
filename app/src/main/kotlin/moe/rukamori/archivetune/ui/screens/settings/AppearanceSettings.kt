@@ -1260,7 +1260,8 @@ private fun SliderStyleOptionCard(
                     1.dp,
                     if (selected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.outlineVariant,
                     RoundedCornerShape(16.dp),
-                ).clickable(onClick = onClick)
+                ).focusable()
+                .clickable(onClick = onClick)
                 .padding(16.dp),
     ) {
         StyledPlaybackSlider(

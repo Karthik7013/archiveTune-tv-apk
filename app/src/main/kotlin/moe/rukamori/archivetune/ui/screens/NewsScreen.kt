@@ -574,6 +574,7 @@ private fun NewsImageCarousel(
             modifier =
                 modifier
                     .clip(MaterialTheme.shapes.extraLarge)
+                    .focusable()
                     .clickable(role = Role.Image) { onImageClick(imageUrls.first()) },
         ) {
             NewsAsyncImage(
@@ -606,6 +607,7 @@ private fun NewsImageCarousel(
                     Modifier
                         .fillMaxSize()
                         .maskClip(MaterialTheme.shapes.extraLarge)
+                        .focusable()
                         .clickable(role = Role.Image) { onImageClick(imageUrls[index]) },
             ) {
                 NewsAsyncImage(
@@ -663,6 +665,7 @@ private fun FullImageViewerDialog(
                 Modifier
                     .fillMaxSize()
                     .background(Color.Black.copy(alpha = 0.92f))
+                    .focusable()
                     .clickable(onClick = onDismiss),
             contentAlignment = Alignment.Center,
         ) {

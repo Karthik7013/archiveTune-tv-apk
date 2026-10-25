@@ -502,6 +502,7 @@ private fun PlaylistTagFilterChip(
                 }.heightIn(min = 48.dp)
                 .clip(CircleShape)
                 .background(containerColor)
+                .focusable()
                 .clickable(
                     interactionSource = interactionSource,
                     indication = null,
@@ -590,6 +591,7 @@ fun ExpressiveTabChip(
                     scaleY = scale
                 }.clip(CircleShape)
                 .background(bgColor)
+                .focusable()
                 .clickable(
                     interactionSource = interactionSource,
                     indication = null,

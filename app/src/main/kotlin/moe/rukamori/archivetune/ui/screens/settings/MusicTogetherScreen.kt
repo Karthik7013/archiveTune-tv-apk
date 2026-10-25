@@ -1167,7 +1167,7 @@ private fun SettingsRow(
         modifier =
             Modifier
                 .clip(MaterialTheme.shapes.large)
-                .then(if (onClick != null) Modifier.clickable(onClick = onClick) else Modifier),
+                .then(if (onClick != null) Modifier.focusable().clickable(onClick = onClick) else Modifier),
         colors =
             androidx.compose.material3.ListItemDefaults
                 .colors(containerColor = Color.Transparent),

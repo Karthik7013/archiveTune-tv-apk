@@ -290,6 +290,7 @@ private fun ViewNewsCarousel(
                     .padding(horizontal = 24.dp)
                     .clip(MaterialTheme.shapes.extraLarge)
                     .background(MaterialTheme.colorScheme.surfaceContainerHighest)
+                    .focusable()
                     .clickable(role = Role.Image) { onImageClick(imageUrls.first()) },
         )
         return
@@ -323,6 +324,7 @@ private fun ViewNewsCarousel(
                     .fillMaxSize()
                     .maskClip(MaterialTheme.shapes.extraLarge)
                     .background(MaterialTheme.colorScheme.surfaceContainerHighest)
+                    .focusable()
                     .clickable(role = Role.Image) { onImageClick(imageUrl) },
         )
     }
@@ -419,6 +421,7 @@ private fun ViewNewsFullImageDialog(
                 Modifier
                     .fillMaxSize()
                     .background(Color.Black.copy(alpha = 0.96f))
+                    .focusable()
                     .clickable(onClick = onDismiss),
             contentAlignment = Alignment.Center,
         ) {

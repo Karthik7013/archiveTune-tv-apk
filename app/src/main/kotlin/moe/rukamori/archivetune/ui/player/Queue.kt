@@ -21,7 +21,7 @@ import androidx.compose.animation.fadeOut
 import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
-import androidx.compose.foundation.combinedClickable
+import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -117,6 +117,7 @@ import moe.rukamori.archivetune.ui.component.BottomSheetState
 import moe.rukamori.archivetune.ui.component.LocalBottomSheetPageState
 import moe.rukamori.archivetune.ui.component.LocalMenuState
 import moe.rukamori.archivetune.ui.component.MediaMetadataListItem
+import moe.rukamori.archivetune.ui.component.tvCombinedClickable
 import moe.rukamori.archivetune.ui.component.TextFieldDialog
 import moe.rukamori.archivetune.ui.menu.AddToPlaylistDialog
 import moe.rukamori.archivetune.ui.menu.PlayerMenu
@@ -1096,24 +1097,24 @@ fun Queue(
                                                 }
                                             }
                                         },
-                                        modifier =
-                                            Modifier
-                                                .fillMaxWidth()
-                                                .background(backgroundColor)
-                                                .combinedClickable(
-                                                    onClick = {
-                                                        if (selection) {
-                                                            if (trackMetadata in selectedSongs) {
-                                                                selectedSongs.remove(trackMetadata)
-                                                                selectedItems.remove(currentItem)
-                                                                if (selectedSongs.isEmpty()) {
-                                                                    selection = false
+                                            modifier =
+                                                Modifier
+                                                    .fillMaxWidth()
+                                                    .background(backgroundColor)
+                                                    .tvCombinedClickable(
+                                                        onClick = {
+                                                            if (selection) {
+                                                                if (trackMetadata in selectedSongs) {
+                                                                    selectedSongs.remove(trackMetadata)
+                                                                    selectedItems.remove(currentItem)
+                                                                    if (selectedSongs.isEmpty()) {
+                                                                        selection = false
+                                                                    }
+                                                                } else {
+                                                                    selectedSongs.add(trackMetadata)
+                                                                    selectedItems.add(currentItem)
                                                                 }
                                                             } else {
-                                                                selectedSongs.add(trackMetadata)
-                                                                selectedItems.add(currentItem)
-                                                            }
-                                                        } else {
                                                             if (index == currentWindowIndex) {
                                                                 playerConnection.player.togglePlayPause()
                                                             } else {

@@ -306,6 +306,6 @@ private fun SpotifyLikedSongListItem(
                 modifier = Modifier.size(ListThumbnailSize),
             )
         },
-        modifier = modifier.clickable(onClick = onClick),
+        modifier = modifier.focusable().clickable(onClick = onClick),
     )
 }

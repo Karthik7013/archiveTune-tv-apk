@@ -1451,6 +1451,7 @@ private fun SelectableMiniPalette(
         Surface(
             modifier =
                 Modifier
+                    .focusable()
                     .clickable(onClick = onClick)
                     .padding(16.dp)
                     .size(48.dp),
@@ -1592,6 +1593,7 @@ private fun SeedChip(
         modifier =
             modifier
                 .clip(RoundedCornerShape(999.dp))
+                .focusable()
                 .clickable(onClick = onClick),
         color = container,
         contentColor = content,
