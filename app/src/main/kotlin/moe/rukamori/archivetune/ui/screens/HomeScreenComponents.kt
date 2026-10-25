@@ -184,7 +184,7 @@ fun HomeCategoryChips(
                     .onKeyEvent { keyEvent ->
                         if (keyEvent.type != KeyEventType.KeyDown) return@onKeyEvent false
                         when (keyEvent.key) {
-                            Key(KEYCODE_DPAD_CENTER.toLong()), Key(KEYCODE_ENTER.toLong()), Key(KEYCODE_NUMPAD_ENTER.toLong()) -> {
+                            Key.DPadCenter, Key.Enter -> {
                                 onChipSelected(chip)
                                 true
                             }

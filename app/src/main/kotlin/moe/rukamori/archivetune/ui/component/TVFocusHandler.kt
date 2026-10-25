@@ -10,10 +10,6 @@ package moe.rukamori.archivetune.ui.component
 import android.view.KeyEvent.KEYCODE_DPAD_CENTER
 import android.view.KeyEvent.KEYCODE_ENTER
 import android.view.KeyEvent.KEYCODE_NUMPAD_ENTER
-import androidx.compose.animation.animateColorAsState
-import androidx.compose.animation.core.Spring
-import androidx.compose.animation.core.animateFloatAsState
-import androidx.compose.animation.core.spring
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.combinedClickable
@@ -126,31 +122,17 @@ fun TVFocusableItem(
 ) {
     val interactionSource = remember { MutableInteractionSource() }
 
-    val containerColor by animateColorAsState(
-        targetValue = when {
-            focused -> MaterialTheme.colorScheme.secondaryContainer
-            selected -> MaterialTheme.colorScheme.surfaceContainerHighest
-            else -> MaterialTheme.colorScheme.surfaceContainerLow
-        },
-        animationSpec = spring(
-            dampingRatio = Spring.DampingRatioMediumBouncy,
-            stiffness = Spring.StiffnessMediumLow,
-        ),
-        label = "TVFocusableItemContainerColor",
-    )
+    val containerColor = when {
+        focused -> MaterialTheme.colorScheme.secondaryContainer
+        selected -> MaterialTheme.colorScheme.surfaceContainerHighest
+        else -> MaterialTheme.colorScheme.surfaceContainerLow
+    }
 
-    val contentColor by animateColorAsState(
-        targetValue = when {
-            focused -> MaterialTheme.colorScheme.onSecondaryContainer
-            selected -> MaterialTheme.colorScheme.onSurface
-            else -> MaterialTheme.colorScheme.onSurfaceVariant
-        },
-        animationSpec = spring(
-            dampingRatio = Spring.DampingRatioMediumBouncy,
-            stiffness = Spring.StiffnessMediumLow,
-        ),
-        label = "TVFocusableItemContentColor",
-    )
+    val contentColor = when {
+        focused -> MaterialTheme.colorScheme.onSecondaryContainer
+        selected -> MaterialTheme.colorScheme.onSurface
+        else -> MaterialTheme.colorScheme.onSurfaceVariant
+    }
 
     Column(
         modifier = modifier
@@ -188,40 +170,19 @@ fun TVNavigationRailItemEnhanced(
 ) {
     val interactionSource = remember { MutableInteractionSource() }
 
-    val scale by animateFloatAsState(
-        targetValue = if (focused || selected) 1.06f else 1f,
-        animationSpec = spring(
-            dampingRatio = Spring.DampingRatioMediumBouncy,
-            stiffness = Spring.StiffnessMediumLow,
-        ),
-        label = "TVNavigationRailItemEnhancedScale",
-    )
+    val scale = if (focused || selected) 1.06f else 1f
 
-    val containerColor by animateColorAsState(
-        targetValue = when {
-            focused -> MaterialTheme.colorScheme.secondaryContainer
-            selected -> MaterialTheme.colorScheme.surfaceContainerHighest
-            else -> MaterialTheme.colorScheme.surfaceContainerLow
-        },
-        animationSpec = spring(
-            dampingRatio = Spring.DampingRatioMediumBouncy,
-            stiffness = Spring.StiffnessMediumLow,
-        ),
-        label = "TVNavigationRailItemEnhancedColor",
-    )
+    val containerColor = when {
+        focused -> MaterialTheme.colorScheme.secondaryContainer
+        selected -> MaterialTheme.colorScheme.surfaceContainerHighest
+        else -> MaterialTheme.colorScheme.surfaceContainerLow
+    }
 
-    val contentColor by animateColorAsState(
-        targetValue = when {
-            focused -> MaterialTheme.colorScheme.onSecondaryContainer
-            selected -> MaterialTheme.colorScheme.onSurface
-            else -> MaterialTheme.colorScheme.onSurfaceVariant
-        },
-        animationSpec = spring(
-            dampingRatio = Spring.DampingRatioMediumBouncy,
-            stiffness = Spring.StiffnessMediumLow,
-        ),
-        label = "TVNavigationRailItemEnhancedContentColor",
-    )
+    val contentColor = when {
+        focused -> MaterialTheme.colorScheme.onSecondaryContainer
+        selected -> MaterialTheme.colorScheme.onSurface
+        else -> MaterialTheme.colorScheme.onSurfaceVariant
+    }
 
     Column(
         modifier = modifier
